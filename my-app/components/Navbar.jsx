@@ -1,20 +1,14 @@
 import React from "react";
+import { Navigation } from "react-router-dom";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
 import {NavbarMenu, NavbarMenuItem, NavbarMenuToggle} from "@nextui-org/react";
 export default function Navbarcomp() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
+    "Home",
+    "Prediction",
+    "Integrations", 
   ];
 
   return (
@@ -25,19 +19,19 @@ export default function Navbarcomp() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit">ACME</p>
+          <p className="font-bold text-inherit text-2xl">SugarSense</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
+          <Link href='/home' color="foreground">
+            Home
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Customers
+          <Link href="/prediction" color="danger" aria-current="page">
+            Prediction
           </Link>
         </NavbarItem>
         <NavbarItem>
@@ -47,12 +41,9 @@ export default function Navbarcomp() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
+          <Button as={Link} className="font-semibold" color="danger" href="#" variant="flat">
+            Share
           </Button>
         </NavbarItem>
       </NavbarContent>
@@ -64,7 +55,7 @@ export default function Navbarcomp() {
                 index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
               }
               className="w-full"
-              href="#"
+              href={`/${item.toLowerCase()}`}
               size="lg"
             >
               {item}

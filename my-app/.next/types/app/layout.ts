@@ -1,4 +1,4 @@
-// File: D:\sem 4\python\py3911\indivisual project\my-app\app\layout.js
+// File: D:\sem 4\python\py3911\diabetes-predictor-ML\my-app\app\layout.js
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

@@ -60,7 +60,7 @@ export default function Chart({ data }) {
         label: 'Age vs '+ data.label,
         data: data.data.map((item) => item),
         borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: 'rgb(255, 99, 132 )',
         pointHoverRadius: 5,
         pointHoverBackgroundColor: 'rgba(255, 102, 178)',
         pointHoverBorderColor: 'rgba(255, 102, 178)',
