@@ -72,19 +72,18 @@ export default function Bmi() {
       </div>
       {bmiData && (
         <div className="flex flex-col gap-4 items-center justify-center">
-          <h1
+          <div
             className="text-xl lg:text-5xl font-[arial]  font-[700] uk-animation-slide-bottom-small"
             data-uk-scrollspy-class="uk-animation-slide-bottom-small"
           >
             <BMIStrip bmi={bmiData.bmi} label={bmiData.health_risk} />
-          </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          </div>
             <div className="bg-pink-100 p-6 rounded-lg shadow-lg border-3 border-red-500">
               <h1 className="text-center text-2xl font-bold mb-4">
                 Precautions
               </h1>
               <ul
-                className="list-disc pl-6 mt-4 uk-animation-fade"
+                className="list-disc pl-6 mt-4 uk-animation-fade text-left"
                 data-uk-scrollspy="cls: uk-animation-slide-bottom-small; target: li; delay: 100; repeat: true"
               >
                 {bmiData.precautions.map((precaution) => (
@@ -101,7 +100,6 @@ export default function Bmi() {
               </h1>
             </div>
           </div>
-        </div>
       )}
     </RootLayout>
   );

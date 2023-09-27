@@ -10,10 +10,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <>
-      <div className="bg-gradient-to-br from-white to-pink-200 items-center justify-center h-full uk-scrollspy">
+      <div className="bg-gradient-to-br from-white to-pink-200 items-center text-center justify-center h-full uk-scrollspy">
         <Navbarcomp />
         {children}
-        <footer className="bg-pink-100 bg-opacity-80 backdrop-filter backdrop-blur-lg text-center py-4 mt-4">
+        <footer className="bg-pink-100 bg-opacity-80 backdrop-filter backdrop-blur-lg text-center font-semibold py-4 mt-4">
           <div className="container mx-auto">
             <p className="text-gray-600 text-sm">
               &copy; {new Date().getFullYear()} Sugarsense. All rights reserved.

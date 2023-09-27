@@ -58,204 +58,128 @@ export default function Fpp() {
       });
   };
 
-  return !loading && !result ? (
-    <div className="justify-center items-center p-4 ml-[30%]">
-    <div className="flex justify-center border-3 border-pink-100 bg-pink-100 shadow-2xl rounded-lg p-2 max-w-xl ">
-    <form className="flex flex-col gap-3 items-center justify-center">
-    <h1 className="text-3xl font-bold text-center bg-gradient-to-r from-pink-500 to-red-500 text-transparent bg-clip-text">Diabetes Predictor</h1>
-      <Input
-        isClearable
-        type="email"
-        label="Email"
-        required="required"
-        onChange={(e) => setEmail(e.target.value)}
-        variant="faded"
-        onClear={() => console.log("input cleared")}
-        className="max-w-xs"
-      />
-      <Input
-        isClearable
-        type="number"
-        label="BMI"
-        onChange={(e) => setBmi(e.target.value)}
-        variant="faded"
-        onClear={() => console.log("input cleared")}
-        className="max-w-xs"
-      />
-      <Input
-        isClearable
-        type="number"
-        label="Age"
-        onChange={(e) => setAge(e.target.value)}
-        variant="faded"
-        onClear={() => console.log("input cleared")}
-        className="max-w-xs"
-      />
-      <Input
-        isClearable
-        type="text"
-        label="HbA1c_level"
-        onChange={(e) => setHba1c(e.target.value)}
-        variant="faded"
-        onClear={() => console.log("input cleared")}
-        className="max-w-xs"
-      />
-      <Input
-        isClearable
-        type="text"
-        onChange={(e) => setBlood_glucose(e.target.value)}
-        label="blood_glucose_level"
-        variant="faded"
-        onClear={() => console.log("input cleared")}
-        className="max-w-xs"
-      />
-      <Switch
-        color="danger"
-        isSelected={hypertension}
-        onValueChange={setHypertension}
-      >
-        Hypertension
-      </Switch>
-      <Switch color="danger" isSelected={smoke} onValueChange={setSmoke}>
-        Do you Smoke?
-      </Switch>
-      <Switch
-        color="danger"
-        isSelected={heart_disease}
-        onValueChange={setHeart_disease}
-      >
-        Do you have any heart disease?
-      </Switch>
-      <div className="flex flex-col gap-3">
-        <RadioGroup
-          label="Select Gender"
-          orientation="horizontal"
-          value={gender}
-          onValueChange={setGender}
-        >
-          <Radio value="0">Female</Radio>
-          <Radio value="1">Male</Radio>
-        </RadioGroup>
+  return !loading ? (
+    <div className="justify-center items-center p-4 ">
+      <div className="flex justify-center border-3 ml-[30%] border-pink-100 bg-pink-100 shadow-2xl rounded-lg p-2 max-w-xl ">
+        <form className="flex flex-col gap-3 items-center justify-center">
+          <h1 className="text-3xl font-bold text-center bg-gradient-to-r from-pink-500 to-red-500 text-transparent bg-clip-text">
+            Diabetes Predictor
+          </h1>
+          <Input
+            isClearable
+            type="email"
+            label="Email"
+            required="required"
+            onChange={(e) => setEmail(e.target.value)}
+            variant="faded"
+            onClear={() => console.log("input cleared")}
+            className="max-w-xs"
+          />
+          <Input
+            isClearable
+            type="number"
+            label="BMI"
+            onChange={(e) => setBmi(e.target.value)}
+            variant="faded"
+            onClear={() => console.log("input cleared")}
+            className="max-w-xs"
+          />
+          <Input
+            isClearable
+            type="number"
+            label="Age"
+            onChange={(e) => setAge(e.target.value)}
+            variant="faded"
+            onClear={() => console.log("input cleared")}
+            className="max-w-xs"
+          />
+          <Input
+            isClearable
+            type="text"
+            label="HbA1c_level"
+            onChange={(e) => setHba1c(e.target.value)}
+            variant="faded"
+            onClear={() => console.log("input cleared")}
+            className="max-w-xs"
+          />
+          <Input
+            isClearable
+            type="text"
+            onChange={(e) => setBlood_glucose(e.target.value)}
+            label="blood_glucose_level"
+            variant="faded"
+            onClear={() => console.log("input cleared")}
+            className="max-w-xs"
+          />
+          <Switch
+            color="danger"
+            isSelected={hypertension}
+            onValueChange={setHypertension}
+          >
+            Hypertension
+          </Switch>
+          <Switch color="danger" isSelected={smoke} onValueChange={setSmoke}>
+            Do you Smoke?
+          </Switch>
+          <Switch
+            color="danger"
+            isSelected={heart_disease}
+            onValueChange={setHeart_disease}
+          >
+            Do you have any heart disease?
+          </Switch>
+          <div className="flex flex-col gap-3">
+            <RadioGroup
+              label="Select Gender"
+              orientation="horizontal"
+              value={gender}
+              onValueChange={setGender}
+            >
+              <Radio value="0">Female</Radio>
+              <Radio value="1">Male</Radio>
+            </RadioGroup>
+          </div>
+          <Button color="danger" variant="shadow" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </form>
       </div>
-      <Button color="danger" variant="shadow" onClick={handleSubmit}>
-        Submit
-      </Button>
-    </form>
-    </div>
-    </div>
-  ) : result ? (
-    <div>
-    <div className="justify-center items-center p-4 ml-[30%]">
-    <div className="flex justify-center border-3 border-red-600 bg-pink-100 shadow-2xl rounded-lg p-2 max-w-xl ">
-    <form className="flex flex-col gap-3 items-center justify-center">
-    <h1 className="text-3xl font-bold text-center bg-gradient-to-r from-pink-500 to-red-500 text-transparent bg-clip-text ">Diabetes Predictor</h1>
-
-      <Input
-        isClearable
-        type="email"
-        label="Email"
-        required="required"
-        onChange={(e) => setEmail(e.target.value)}
-        variant="faded"
-        onClear={() => console.log("input cleared")}
-        className="max-w-xs"
-      />
-      <Input
-        isClearable
-        type="number"
-        label="BMI"
-        onChange={(e) => setBmi(e.target.value)}
-        variant="faded"
-        onClear={() => console.log("input cleared")}
-        className="max-w-xs"
-      />
-      <Input
-        isClearable
-        type="number"
-        label="Age"
-        onChange={(e) => setAge(e.target.value)}
-        variant="faded"
-        onClear={() => console.log("input cleared")}
-        className="max-w-xs"
-      />
-      <Input
-        isClearable
-        type="text"
-        label="HbA1c_level"
-        onChange={(e) => setHba1c(e.target.value)}
-        variant="faded"
-        onClear={() => console.log("input cleared")}
-        className="max-w-xs"
-      />
-      <Input
-        isClearable
-        type="text"
-        onChange={(e) => setBlood_glucose(e.target.value)}
-        label="blood_glucose_level"
-        variant="faded"
-        onClear={() => console.log("input cleared")}
-        className="max-w-xs"
-      />
-      <Switch
-        color="danger"
-        isSelected={hypertension}
-        onValueChange={setHypertension}
-      >
-        Hypertension
-      </Switch>
-      <Switch color="danger" isSelected={smoke} onValueChange={setSmoke}>
-        Do you Smoke?
-      </Switch>
-      <Switch
-        color="danger"
-        isSelected={heart_disease}
-        onValueChange={setHeart_disease}
-      >
-        Do you have any heart disease?
-      </Switch>
-      <div className="flex flex-col gap-3">
-        <RadioGroup
-          label="Select Gender"
-          orientation="horizontal"
-          value={gender}
-          onValueChange={setGender}
-        >
-          <Radio value="0">Female</Radio>
-          <Radio value="1">Male</Radio>
-        </RadioGroup>
-      </div>
-      <Button color="danger" variant="shadow" onClick={handleSubmit}>
-        Submit
-      </Button>
-    </form>
-    </div>
-    </div>
-    <div className=" flex justify-center ">
-      <div className="dials border-solid border-4 border-red-400 drop-shadow-lg rounded-full">
-        <DiabDial value={result.prediction * 100} title="Diabetes" />
-      </div>
-      <div className="bg-pink-100 p-6 rounded-lg shadow-lg border-3 border-red-500">
-        <h1 className="text-center text-2xl font-bold mb-4">Precautions</h1>
-        <ul
-          className="list-disc pl-6 mt-4 uk-animation-fade capitalize"
-          data-uk-scrollspy="cls: uk-animation-slide-bottom-small; target: li; delay: 100; repeat: true"
-        >
-          {result.precautions.map((precaution) => (
-            <li>{precaution}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="bg-pink-100 p-4 rounded-lg shadow-lg border-3 border-red-500">
-        <h1
-          className="list-disc uk-animation-fade font-bold capitalize"
-          data-uk-scrollspy="cls: uk-animation-slide-bottom-small; target: li; delay: 100; repeat: true"
-        >
-          {result.medication}
-        </h1>
-      </div>
-    </div>
+      {result && (
+        <div>
+          <div className="flex flex-col items-center justify-center">
+            <div className="w-full max-w-xs mt-6">
+              <div className="dials border-solid border-4 border-red-400 drop-shadow-lg rounded-full mb-4">
+                <DiabDial value={result.prediction * 100} title="Diabetes" />
+              </div>
+              <div className="bg-pink-100 p-6 rounded-lg shadow-lg border-3 border-red-500 mb-4">
+                <h1 className="text-center text-2xl font-bold mb-4">
+                  Precautions
+                </h1>
+                <ul
+                  className="list-disc pl-6 mt-4 uk-animation-fade capitalize text-left"
+                  data-uk-scrollspy="cls: uk-animation-slide-bottom-small; target: li; delay: 100; repeat: true"
+                >
+                  {result.precautions.map((precaution) => (
+                    <li>{precaution}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="bg-pink-100 p-4 rounded-lg shadow-lg border-3 border-red-500 mb-4">
+                <h1
+                  className="list-disc uk-animation-fade font-bold capitalize"
+                  data-uk-scrollspy="cls: uk-animation-slide-bottom-small; target: li; delay: 100; repeat: true"
+                >
+                  {result.medication}
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   ) : (
-    <Loader />
+    <div className="h-[600px]">
+      <Loader />
+    </div>
   );
 }

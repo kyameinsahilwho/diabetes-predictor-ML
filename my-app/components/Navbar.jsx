@@ -63,6 +63,15 @@ export default function Navbarcomp() {
             BMI
           </Link>
         </NavbarItem>
+        <NavbarItem>
+          <Link
+            color="foreground"
+            href="/trends"
+            aria-current={router.pathname === "/trends" ? "page" : undefined}
+          >
+            Trends
+          </Link>
+        </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
