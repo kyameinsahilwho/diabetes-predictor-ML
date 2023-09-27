@@ -1,15 +1,25 @@
 import React from "react";
 import { Navigation } from "react-router-dom";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
-import {NavbarMenu, NavbarMenuItem, NavbarMenuToggle} from "@nextui-org/react";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Link,
+  Button,
+} from "@nextui-org/react";
+import {
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+} from "@nextui-org/react";
+import { useRouter } from "next/router";
+
 export default function Navbarcomp() {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const menuItems = [
-    "Home",
-    "Prediction",
-    "Integrations", 
-  ];
+  const menuItems = ["Home", "Prediction", "Bmi"];
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -25,24 +35,54 @@ export default function Navbarcomp() {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link href='/home' color="foreground">
-            Home
+          <Link
+            href="/home"
+            color="foreground"
+            aria-current={router.pathname === "/home" ? "page" : undefined}
+          >
+            <span className="hover:text-pink-500 no-underline">Home</span>
           </Link>
         </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="/prediction" color="danger" aria-current="page">
+        <NavbarItem>
+          <Link
+            href="/prediction"
+            color="danger"
+            aria-current={
+              router.pathname === "/prediction" ? "page" : undefined
+            }
+          >
             Prediction
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
+          <Link
+            color="foreground"
+            href="/bmi"
+            aria-current={router.pathname === "/bmi" ? "page" : undefined}
+          >
+            BMI
           </Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={Link} className="font-semibold" color="danger" href="#" variant="flat">
+          <Button
+            as={Link}
+            className="font-semibold"
+            color="danger"
+            variant="flat"
+            onClick={() => {
+              if (navigator.share) {
+                navigator.share({
+                  title: document.title,
+                  url: window.location.href,
+                });
+              } else {
+                // Fallback for browsers that don't support Web Share API
+                alert("Sorry, your browser does not support sharing.");
+              }
+            }}
+          >
             Share
           </Button>
         </NavbarItem>
@@ -52,7 +92,11 @@ export default function Navbarcomp() {
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
               color={
-                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
+                index === 2
+                  ? "primary"
+                  : index === menuItems.length - 1
+                  ? "danger"
+                  : "foreground"
               }
               className="w-full"
               href={`/${item.toLowerCase()}`}

@@ -22,4 +22,5 @@ urlpatterns = [
     path('agevsbmi/',views.agevsbmi),
     path('agevsbloodglucose/',views.agevsbloodglucose),
     path('agevshba1c/',views.agevshba1c),
+    path('bmicalculator/',views.bmicalculator),
 ]
