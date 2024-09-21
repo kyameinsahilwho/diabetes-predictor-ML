@@ -6,7 +6,7 @@ import { Button } from "@nextui-org/react";
 import Loader from "./loader";
 import Link from "next/link";
 import Progressbar from "./Progressbar";
-import DiabDial from "./Gauge";
+import RadialChartComponent from "./Gauge";
 export default function Fpp() {
   const [selected, setSelected] = React.useState("london");
 
@@ -186,9 +186,17 @@ export default function Fpp() {
               </div>
             </div>
             <div className="flex flex-col items-center justify-center">
-              <div className="w-full max-w-xs mt-6">
-                <div className="dials border-solid border-4 border-red-400 drop-shadow-lg rounded-full mb-4">
-                  <DiabDial value={result.prediction * 100} title="Diabetes" />
+              <div>
+                <div className="drop-shadow-lg rounded-full mb-4">
+                  <RadialChartComponent
+                    title="Diabetes Predictor"
+                    chances={parseFloat((result.prediction * 100).toFixed(2))}
+                    startAngle={0}
+                    endAngle={parseFloat((result.prediction * 100).toFixed(2))*360/100}
+                    innerRadius={80}
+                    outerRadius={110}
+                    footerText=""
+                  />{" "}
                 </div>
 
                 <div className="bg-pink-100 p-4 rounded-lg shadow-lg border-3 border-red-500 mb-4">

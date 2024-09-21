@@ -1,45 +1,127 @@
-import React from "react";
-import GaugeChart from "react-gauge-chart";
+import React, { useState, useEffect } from 'react';
 
-const styles = {
-  dial: {
-    display: "inline-block",
-    width: `300px`,
-    height: `auto`,
-    color: "#000",
-    padding: "2px"
-  },
-  title: {
-    fontSize: "1em",
-    color: "#000"
+const RadialChartComponent = ({ 
+  title = "Radial Chart - Text",
+  description = "",
+  chances = 200,
+  startAngle = 0,
+  endAngle = 250,
+  innerRadius = 100, // Increased from 80 to 100
+  outerRadius = 140, // Increased from 110 to 140
+  footerText = ""
+}) => {
+  const [Component, setComponent] = useState(null);
+
+  useEffect(() => {
+    const loadComponent = async () => {
+      const [
+        { TrendingUp },
+        { Label, PolarGrid, PolarRadiusAxis, RadialBar, RadialBarChart },
+        { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle },
+        { ChartContainer }
+      ] = await Promise.all([
+        import('lucide-react'),
+        import('recharts'),
+        import('@/components/ui/card'),
+        import('@/components/ui/chart')
+      ]);
+
+      const chartData = [
+        { browser: "safari", chances: chances, fill: "var(--color-safari)" },
+      ];
+      const chartConfig = {
+        chances: {
+          label: "chances",
+        },
+        safari: {
+          label: "Safari",
+          color: "hsl(var(--chart-2))",
+        },
+      };
+
+      const InnerComponent = () => (
+        <Card className="flex flex-col">
+          <CardHeader className="items-center pb-0">
+            <CardTitle>{title}</CardTitle>
+            <CardDescription>{description}</CardDescription>
+          </CardHeader>
+          <CardContent className="flex-1 pb-0">
+            <ChartContainer
+              config={chartConfig}
+              className="mx-auto aspect-square h-[250px]"
+            >
+              <RadialBarChart
+                data={chartData}
+                startAngle={startAngle}
+                endAngle={endAngle}
+                innerRadius={innerRadius}
+                outerRadius={outerRadius}
+              >
+                <PolarGrid
+                  gridType="circle"
+                  radialLines={false}
+                  stroke="none"
+                  className="first:fill-muted last:fill-background"
+                  polarRadius={[86, 74]} // Adjusted to match the new radius
+                />
+                <RadialBar dataKey="chances" background cornerRadius={10} />
+                <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
+                  <Label
+                    content={({ viewBox }) => {
+                      if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                        return (
+                          <text
+                            x={viewBox.cx}
+                            y={viewBox.cy}
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                          >
+                            <tspan
+                              x={viewBox.cx}
+                              y={viewBox.cy}
+                              className="fill-foreground text-4xl font-bold"
+                            >
+                              {chances.toLocaleString() + "%"}
+                            </tspan>
+                            <tspan
+                              x={viewBox.cx}
+                              y={(viewBox.cy || 0) + 24}
+                              className="fill-muted-foreground"
+                            >
+                              Chances
+                            </tspan>
+                          </text>
+                        )
+                      }
+                    }}
+                  />
+                </PolarRadiusAxis>
+              </RadialBarChart>
+            </ChartContainer>
+          </CardContent>
+          <CardFooter className="flex-col gap-2 text-sm">
+            <div className="flex items-center gap-2 font-medium leading-none">
+              <TrendingUp size={16} />
+              <span className="text-muted-foreground">Probabilty of Diabetes {chances}%</span>
+            </div>
+            <div className="leading-none text-muted-foreground">
+              {footerText}
+            </div>
+          </CardFooter>
+        </Card>
+      );
+
+      setComponent(() => InnerComponent);
+    };
+
+    loadComponent();
+  }, [title, description, chances, startAngle, endAngle, innerRadius, outerRadius, footerText]);
+
+  if (!Component) {
+    return <div>Loading...</div>;
   }
+
+  return <Component />;
 };
 
-const DiabDial = ({ id, value, title }) => {
-  let percent = value / 100;
-  // value: "-50" -> percent: 0
-  // value: "0" ---> percent: .5
-  // value: "50" ---> percent: 1
-  // -25 ... .5 + (-25/100) = .25
-  // 25 ...  .5 + (25/100) = .75
-  // -110 .. .5 + (-110/100) = -0.6
-
-  return (
-    <div style={styles.dial}>
-      <GaugeChart
-        id={id}
-        nrOfLevels={3}
-        arcsLength={[0.25, 0.5, 0.25]}
-        colors={["#6aa84f", "#f1c232", "#cc0000"]}
-        arcPadding={0.02}
-        percent={percent}
-        textColor={"#000000"}
-        needleColor={"#5392ff"}
-        formatTextValue={(value) => `${value.toFixed(1)}%`}
-      />
-      <div style={styles.title}>{title}</div>
-    </div>
-  );
-};
-
-export default DiabDial;
+export default RadialChartComponent;
