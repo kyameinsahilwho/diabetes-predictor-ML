@@ -177,12 +177,6 @@ export default function Fpp() {
                     </button>
                   </div>
                 </div>
-                <img
-                  alt="logo"
-                  width="420"
-                  height="120"
-                  src="https://cdn.dribbble.com/userupload/2338354/file/original-ae1855a82a249b8522e6d62be6351828.png?resize=752x"
-                />
               </div>
             </div>
             <div className="flex flex-col items-center justify-center">
