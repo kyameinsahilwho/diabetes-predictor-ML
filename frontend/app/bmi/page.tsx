@@ -62,7 +62,7 @@ const BMIStrip = ({ bmi, label }: { bmi: number; label: string }) => (
   <div className="w-full max-w-md">
     <Progress value={bmi} max={40} className="h-8" />
     <div className="mt-2 text-center">
-      <span className="text-medium font-bold">{bmi.toFixed(1)}</span>
+      <span className="text-lg font-bold">{bmi.toFixed(1)}</span>
       <span className="ml-2 text-lg">{label}</span>
     </div>
   </div>
